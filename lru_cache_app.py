@@ -29,7 +29,7 @@ def lru_cache(input=sys.stdin, output=sys.stdout):
                     if len(cache) > 3:
                         cache.popitem(last=False)
                 else:
-                    output.write('ERROR: invalid input.\n')
+                    output.write('ERROR\n')
             elif command == 'GET':
                 if len(s) == 2:
                     key = s[1]
@@ -41,7 +41,6 @@ def lru_cache(input=sys.stdin, output=sys.stdout):
                         output.write('NOTFOUND\n')
                 else:
                     output.write('ERROR\n')
-
 
 
 if __name__ == "__main__":

@@ -1,10 +1,10 @@
 import unittest
-from unittest import mock
+from textwrap import dedent
 from io import StringIO
 from lru_cache_app import lru_cache
 
 
-class lruTestCase(unittest.TestCase):
+class LruTestCase(unittest.TestCase):
 
     def setUp(self):
         self.stdout = StringIO()
@@ -20,21 +20,24 @@ class lruTestCase(unittest.TestCase):
         self.stdin.write('EXIT\n')
         self.stdin.seek(0)
         lru_cache(input=self.stdin, output=self.stdout)
-        self.assertEqual(self.stdout.getvalue().strip(), """SIZE OK
-NOTFOUND
-SET OK
-GOT 1
-SET OK
-GOT 1.1
-SET OK
-GOT 2
-SET OK
-SET OK
-NOTFOUND
-GOT 2
-GOT third
-ERROR
-GOT four""")
+        s = """
+            SIZE OK
+            NOTFOUND
+            SET OK
+            GOT 1
+            SET OK
+            GOT 1.1
+            SET OK
+            GOT 2
+            SET OK
+            SET OK
+            NOTFOUND
+            GOT 2
+            GOT third
+            ERROR
+            GOT four
+            """
+        self.assertEqual(self.stdout.getvalue().strip(), dedent(s).strip())
 
 
 if __name__ == '__main__':
