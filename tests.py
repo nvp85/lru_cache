@@ -1,7 +1,7 @@
 import unittest
 from textwrap import dedent
 from io import StringIO
-from lru_cache_app import lru_cache
+from lru_cache_app_v2 import lru_cache2 as lru_cache
 
 
 class LruTestCase(unittest.TestCase):
